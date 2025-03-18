@@ -1,0 +1,153 @@
+---
+// Components
+import Button from "components/Button.astro";
+import Logo from "./Logo.astro"
+import LogoSmaller from "./LogoSmaller.astro"
+
+const links = [
+    {
+        text: "Schedule",
+        link: "/schedule/",
+    },
+    {
+        text: "Speakers",
+        link: "/speakers/",
+    },
+    {
+        text: "Sponsors",
+        link: "/sponsors/",
+    },
+    {
+        text: "FAQ",
+        link: "/faq/",
+    },
+];
+---
+
+<header>
+    <Button
+        text="Get tickets"
+        link="https://www.eventbrite.com/e/gosim-ai-paris-tickets-1265928669729?aff=oddtdtcreator"
+        openInNewTab
+        class="btn primary btn-floating btn-hover"
+    />
+
+    <div class="mobile-nav">
+        <div class="overlay overlay-dark" data-navigation-toggle="close" />
+
+        <div class="mobile-nav-box">
+            <div class="box-row box-row-logo">
+                <Logo />
+            </div>
+            <nav class="box-row box-row-nav" aria-label="Navigation Mobile">
+                <ul>
+                    {
+                        links.map((loop) => (
+                            <li
+                                class="link link-hover"
+                                data-barba-update
+                                data-link-status="not-active"
+                            >
+                                <a class="link-click" href={loop.link}>
+                                    <span>{loop.text}</span>
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </nav>
+            <div class="box-row box-row-btn">
+                <Button
+                    text="Get tickets"
+                    link="https://www.eventbrite.com/e/gosim-ai-paris-tickets-1265928669729?aff=oddtdtcreator"
+                    openInNewTab
+                    class="btn primary xl btn-hover"
+                />
+            </div>
+        </div>
+    </div>
+
+    <button class="hamburger btn-floating" data-navigation-toggle="toggle">
+        <div class="hamburger-fill"></div>
+        <div class="bar bar-top"></div>
+        <div class="bar bar-bottom"></div>
+    </button>
+
+    <div class="btn light btn-filter btn-filter-floating btn-hover">
+        <div class="btn-click filter-alpha-animate" data-filter-toggle="toggle">
+            <div class="btn-content original">
+                <div class="btn-fill"></div>
+                <span>Filter</span>
+            </div>
+            <div class="btn-content duplicate">
+                <div class="btn-fill"></div>
+                <span>Filter</span>
+            </div>
+            <div class="border-box"></div>
+        </div>
+    </div>
+
+    <div class="main-nav-bar" style="opacity: 1;">
+        <div class="overlay nav-fill"></div>
+        <div class="row">
+            <div class="border-bottom"></div>
+            
+            <div class="logo">
+                <a href="/" class="logo-click">
+                    <LogoSmaller />
+
+                    <Logo />
+                </a>
+            </div>
+
+            <nav aria-label="Navigation Desktop">
+                <ul>
+                    {
+                        links.map((loop) => (
+                            <li
+                                class="link link-hover"
+                                data-barba-update
+                                data-link-status="not-active"
+                            >
+                                <a class="link-click" href={loop.link}>
+                                    <span>{loop.text}</span>
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </nav>
+
+            <Button
+                text="Get tickets"
+                link="https://www.eventbrite.com/e/gosim-ai-paris-tickets-1265928669729?aff=oddtdtcreator"
+                openInNewTab
+                class="btn outline btn-hover"
+            />
+
+            <div class="hamburger outline" data-navigation-toggle="toggle">
+                <div class="hamburger-fill"></div>
+                <div class="bar bar-top"></div>
+                <div class="bar bar-bottom"></div>
+            </div>
+
+            <div class="btn light btn-filter btn-filter-static btn-hover">
+                <div
+                    class="btn-click filter-alpha-animate"
+                    data-filter-toggle="toggle"
+                >
+                    <div class="btn-content original">
+                        <div class="btn-fill"></div>
+                        <span>Filter</span>
+                    </div>
+                    <div class="btn-content duplicate">
+                        <div class="btn-fill"></div>
+                        <span>Filter</span>
+                    </div>
+                    <div class="border-box"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>

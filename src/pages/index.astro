@@ -1,6 +1,43 @@
 ---
-import Layout from '../layouts/Layout.astro';
+// Components
+import Layout from 'layouts/Layout.astro';
+import Hero from 'components/Hero/Hero.astro';
 ---
 
-<Layout>
+<Layout
+	title="GOSIM AI Paris 2025"
+	description="GOSIM Paris, the City of Light, transforms into the City of Artificial Brilliance this May. GOSIM AI 2025 invites visionaries, disruptors, and pioneers to converge at Station F, a crucible of innovation, to shape the next frontier of AI."
+	navDarkMode={true}
+	navBackground="header-home"
+	pageTransitionName="Home"
+>
+
+	<Hero
+		date="May 6-7, 2025"
+		location="Paris, France"
+		links={[
+			{
+				text: 'Propose a talk',
+				link: 'https://cfp.gosim.org/',
+				openInNewTab: true,
+			},
+			{
+				text: 'Apply for Spotlight',
+				link: 'https://spotlight.gosim.org/ai2025',
+				openInNewTab: true,
+			}
+		]}
+	/>
+
+	<div
+		class="section-wrap"
+		id="intro"
+		data-theme-section="light"
+		data-bg-section="lightgray"
+	>
+		<Intro />
+
+		<Statistics />
+	</div>
+
 </Layout>

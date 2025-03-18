@@ -1,0 +1,21 @@
+---
+// Styles
+import "./Loading.scss"
+
+interface Props {
+    pageTransitionName?: string,
+}
+
+const { pageTransitionName } = Astro.props;
+---
+
+<div class="loading-container">
+    <div class="transition-screen" />
+    <div class="transition-words">
+        <div class="wrap">
+            <h3 data-change-page-title>
+                {pageTransitionName || 'GOSIM AI'}
+            </h3>
+        </div>
+    </div>
+</div>
