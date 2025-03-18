@@ -51,7 +51,7 @@ const { title, description, noindex, navDarkMode, navBackground, pageTransitionN
 		data-barba="wrapper"
 	>
 
-		<Loading pageTransitionName={pageTransitionName} />
+		<Loading />
 
 		<Header />
 
@@ -60,7 +60,7 @@ const { title, description, noindex, navDarkMode, navBackground, pageTransitionN
 			class="main"
 			data-barba="container"
 			data-barba-namespace="home"
-			data-page-title="Home"
+			data-page-title={pageTransitionName || "GOSIM"}
 		>
 	  		<slot />
 		</main>

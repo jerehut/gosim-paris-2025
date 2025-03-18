@@ -21,6 +21,8 @@ const links = [
         link: "/faq/",
     },
 ];
+
+const slug = Astro.url.pathname;
 ---
 
 <header>
@@ -40,19 +42,17 @@ const links = [
             </div>
             <nav class="box-row box-row-nav" aria-label="Navigation Mobile">
                 <ul>
-                    {
-                        links.map((loop) => (
-                            <li
-                                class="link link-hover"
-                                data-barba-update
-                                data-link-status="not-active"
-                            >
-                                <a class="link-click" href={loop.link}>
-                                    <span>{loop.text}</span>
-                                </a>
-                            </li>
-                        ))
-                    }
+                    {links.map((loop) => (
+                        <li
+                            class="link link-hover"
+                            data-barba-update
+                            data-link-status={loop.link === slug ? "active" : "not-active"}
+                        >
+                            <a class="link-click" href={loop.link}>
+                                <span>{loop.text}</span>
+                            </a>
+                        </li>
+                    ))}
                 </ul>
             </nav>
             <div class="box-row box-row-btn">
@@ -106,7 +106,7 @@ const links = [
                             <li
                                 class="link link-hover"
                                 data-barba-update
-                                data-link-status="not-active"
+                                data-link-status={loop.link === slug ? "active" : "not-active"}
                             >
                                 <a class="link-click" href={loop.link}>
                                     <span>{loop.text}</span>

@@ -1,3 +1,22 @@
+/* ------------------------- Order -------------------------------------------------- */
+
+body {
+   display: flex;
+   flex-direction: column;
+}
+
+header {
+   order: 1;
+}
+
+main {
+   order: 2;
+}
+
+footer {
+   order: 3;
+}
+
 /* ------------------------- Loading -------------------------------------------------- */
 
 .loading-container {
