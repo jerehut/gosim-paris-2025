@@ -16,16 +16,11 @@ const { text, link, openInNewTab, class: className } = Astro.props;
         target={openInNewTab ? "_blank" : "_self"}
         rel={openInNewTab ? "noopener noreferrer" : ""}
     >
-        <div class="btn-content original">
-            <div class="btn-fill"></div>
-            <span>{text}</span>
-        </div>
-
         <div class="btn-content duplicate">
             <div class="btn-fill"></div>
             <span>{text}</span>
         </div>
-        
+
         <div class="border-box"></div>
     </a>
 </div>

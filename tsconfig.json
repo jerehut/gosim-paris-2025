@@ -12,6 +12,7 @@
       "styles/*": ["src/styles/*"],
       "layouts/*": ["src/layouts/*"],
       "js/*": ["src/js/*"],
+      "json/*": ["src/json/*"],
       "assets/*": ["src/assets/*"],
     }
   }

@@ -1,0 +1,40 @@
+{
+    "speakers": [
+        {
+            "tag": "AI infra",
+            "name": "Raymond James",
+            "description": "Founder & Open-Source contributor at the lorem ipsum project",
+            "image": "speaker-placeholder.jpg"
+        },
+        {
+            "tag": "AI models",
+            "name": "Raymond James",
+            "description": "Founder & Open-Source contributor at the lorem ipsum project",
+            "image": "speaker-placeholder.jpg"
+        },
+        {
+            "tag": "Embodied AI",
+            "name": "Raymond James",
+            "description": "Founder & Open-Source contributor at the lorem ipsum project",
+            "image": "speaker-placeholder.jpg"
+        },
+        {
+            "tag": "AI for science",
+            "name": "Raymond James",
+            "description": "Founder & Open-Source contributor at the lorem ipsum project",
+            "image": "speaker-placeholder.jpg"
+        },
+        {
+            "tag": "Global collaboration",
+            "name": "Raymond James",
+            "description": "Founder & Open-Source contributor at the lorem ipsum project",
+            "image": "speaker-placeholder.jpg"
+        },
+        {
+            "tag": "AI models",
+            "name": "Raymond James",
+            "description": "Founder & Open-Source contributor at the lorem ipsum project",
+            "image": "speaker-placeholder.jpg"
+        }
+    ]
+}

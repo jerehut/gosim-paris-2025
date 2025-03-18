@@ -61,7 +61,7 @@ const { date, location, links } = Astro.props;
                         <Button
                             text={loop.text}
                             link={loop.link}
-                            openInNewTab={loop.openInNewTab}
+                            openInNewTab={loop?.openInNewTab}
                             class="btn light xl btn-hover fade-in-last"
                         />
                     ))}

@@ -1,7 +1,17 @@
 ---
 // Components
 import Layout from 'layouts/Layout.astro';
-import Hero from 'components/Hero/Hero.astro';
+import Hero from 'components/Hero.astro';
+import Intro from 'components/Intro.astro';
+import Statistics from 'components/Statistics.astro';
+import Tracks from 'components/Tracks.astro';
+import FeaturedSpeakers from 'components/FeaturedSpeakers.astro';
+import Cards from 'components/Cards.astro';
+import TextAndImage from 'components/TextAndImage.astro';
+
+// Assets
+import Placeholder from 'assets/homepage/placeholder.jpg';
+import SpotlightBlue from 'assets/homepage/spotlight-bl.svg';
 ---
 
 <Layout
@@ -35,9 +45,127 @@ import Hero from 'components/Hero/Hero.astro';
 		data-theme-section="light"
 		data-bg-section="lightgray"
 	>
-		<Intro />
+		<Intro>
+			<h3 class="light split-words animate-read">
+				Paris, the City of Light, transforms into the City of Artificial Brilliance this May. GOSIM AI 2025 invites visionaries, disruptors, and pioneers to converge
+				at <b class="anchor-span" data-anchor-target="#venueclick">Station F</b>, a crucible of innovation—to shape the next frontier of AI.
+			</h3>
+		</Intro>
 
-		<Statistics />
+		<Statistics 
+			stats={[
+				{
+					title: ' 900+',
+					subtitle: 'Attendees',
+					image: Placeholder,
+					imageAlt: '',
+					hasPlus: true,
+				},
+				{
+					title: '20',
+					subtitle: 'Sessions',
+					imageAlt: '',
+					image: Placeholder,
+				},
+				{
+					title: '2',
+					subtitle: 'Exhilarating days',
+					imageAlt: '',
+					image: Placeholder,
+				}
+			]}
+		/>
 	</div>
+
+	<Tracks
+		title="Tracks"
+		list={[
+			{
+				title: 'AI Model',
+				text: `Shaping the Future with Open-Source AI: Unleashing world-class performance in LLMs, multi-modal AI, cutting-edge image and video generation models, and pioneering on-device small LLMs pushing the boundaries of AI efficiency and accessibility.`
+			},
+			{
+				title: 'AI Infra',
+				text: `Building Scalable AI with Open-Source Innovation: Advancing AI training, inference, fine-tuning, reinforcement learning frameworks, optimized on-device inference solutions, and seamless large-scale cloud deployment to enable next-generation AI capabilities.`
+			},
+			{
+				title: 'AI Apps',
+				text: `Transforming Industries with Open-Source AI: Leveraging community-driven AI models to revolutionize healthcare, finance, and creative tools, while integrating open-source AI app development frameworks, agentic tools, Retrieval-Augmented Generation (RAGs), front-end AI applications, personal AI assistants, future AI operating systems, and smart AI hardware.`
+			},
+			{
+				title: 'Embodied AI',
+				text: `Propelling Open-Source Robotics Forward: Innovating community-driven robot design, expanding openly available datasets, developing advanced visual language models, and shaping policy frameworks that define the future of autonomous systems.`
+			},
+			{
+				title: 'AI For Science',
+				text: `Pushing the Frontiers of Scientific Discovery with AI: Empowering breakthroughs in mathematics, material design, drug discovery, astrophysics, and computer systems through open-source AI research.`
+			},
+			{
+				title: 'Global Open-Source AI Collaboration',
+				text: `Strengthening the AI Ecosystem: Expanding global knowledge-sharing, collaborative dataset development, transparent AI governance, and robust open-source infrastructure to drive worldwide innovation in AI.`
+			},
+		]}
+		ctaButton={{
+			text: 'See schedule',
+			link: '/schedule/',
+		}}
+	/>
+
+	<FeaturedSpeakers
+		title="Featured Speakers"
+		ctaButton={{
+			text: 'More speakers',
+			link: '/speakers/',
+		}}
+	/>
+
+	<Cards
+		title="Why you need to attend"
+		description="From foundational models to open-source breakthroughs, this is where ideas ignite. Join leaders and experts as they explore the most pressing challenges and the most promising opportunities in AI, from ethical considerations to the AGI future."
+		cards={[
+			{
+				title: "French Flair, Global Impact",
+				description: "Showcasing the harmony between open-source ingenuity and technological excellence—immerse yourself in a world where savoir-faire meets groundbreaking innovation, setting the stage for a global AI revolution across six visionary tracks.",
+				image: "/icons/eiffel.svg"
+			},
+			{
+				title: "Open-Source Collaboration",
+				description: "Cultivating a powerful synergy between academia, thriving open-source communities, and visionary industry leaders to drive AI breakthroughs, accelerate innovation, and shape the future of intelligent systems together.",
+				image: "/icons/collaboration.svg"
+			},
+			{
+				title: "World-Class Open-Source AI",
+				description: "Stay at the cutting edge with insights from the most impactful open-source AI projects, including Huggingface, Llama, Qwen, OpenSeek, Intern-LLM, Moxin, Mistral, vLLM, PyTorch, FlagOpen, and emerging trailblazers.",
+				image: "/icons/open-source-ai.svg"
+			},
+			{
+				title: "Unparalleled Networking",
+				description: "Connect with 500+ open-source AI project leaders, researchers, and practitioners driving the AI landscape forward.",
+				image: "/icons/networking.svg"
+			},
+			{
+				title: "Hands-On Workshops",
+				description: "Experience real-time coding labs, interactive AI tool demos, and expert-led sessions designed to provide practical skills and deep technical insights.",
+				image: "/icons/workshops.svg"
+			},
+			{
+				title: "Showcase of AI Startups",
+				description: "Witness the unveiling of groundbreaking AI projects from some of the most innovative startups pushing the boundaries of technology.",
+				image: "/icons/startups.svg"
+			}
+		]}
+	/>
+
+	<TextAndImage
+		title="GOSIM AI Spotlight"
+		text="Step into the realm of innovation at GOSIM AI Spotlight—where Europe’s rich tradition of creativity meets the cutting edge of open-source AI. Join us in this GOSIM AI co-located event that celebrates collaboration, diversity, and the pioneering spirit of our vibrant continent."
+		image={SpotlightBlue}
+		imageAlt="Gosim Spotlight AI badge"
+		ctaButton={{
+			text: 'Apply now',
+			link: 'https://spotlight.gosim.org/ai2025',
+			openInNewTab: true,
+		}}
+	/>
 
 </Layout>
