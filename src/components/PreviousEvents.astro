@@ -1,0 +1,65 @@
+---
+// Packages
+import { Picture } from 'astro:assets';
+
+interface Props {
+	title: string,
+    events?: Array<{
+        title: string,
+        date: string,
+        description: string,
+        image: any,
+        link: string,
+    }>,
+}
+
+const { title, events } = Astro.props;
+---
+
+<section
+    class="section section-resources-featured"
+    data-theme-section="light"
+    data-bg-section="lightgray"
+>
+    <div class="container wide">
+        <div class="row">
+            <div class="col">
+                <h2>{title}</h2>
+            </div>
+        </div>
+
+        <div
+            class="flickity-slider-group three-col count-3"
+            data-flickity-slider-type="cards"
+        >
+            <ul class="flickity-carousel">
+                {events?.map((loop) => (
+                    <li class="flickity-slide">
+                        <a
+                            href={loop.link}
+                            target="_blank"
+                            class="single-resources-card"
+                        >
+                            <div class="card-row card-row-image">
+                                <div class="card-image">
+                                    {loop?.image &&
+                                        <Picture
+                                            src={loop.image}
+                                            formats={['webp', 'jpg']}
+                                            alt={loop.title}
+                                        />
+                                    }
+                                </div>
+                            </div>
+                            <div class="card-row card-row-info">
+                                <h5>{loop.title}</h5>
+                                <p class="dateb">{loop.date}</p>
+                                <p>{loop.description}</p>
+                            </div>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    </div>
+</section>
