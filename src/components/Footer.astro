@@ -1,13 +1,95 @@
 ---
-
+// Components
+import Button from "components/Button.astro";
+import Logo from "./Logo.astro"
 ---
 
-<footer>
-    <div>
+<footer class="section footer" data-theme-section="dark" data-bg-section="dark">
+    <div class="container">
+
+      <div class="row row-base">
+        <div class="col col-logo-gosim">
+          <div class="logo">
+            <a href="/" class="logo-click">
+              <Logo />
+            </a>
+          </div>
+        </div>
+        
+        <nav class="col col-sitemap" aria-label="Navigation Footer">
+          <ul>
+            <li class="link link-hover" data-barba-update="" data-link-status="not-active">
+              <a class="link-click" href="schedule.html">
+                <span>Schedule</span>
+              </a>
+            </li>
+            <li class="link link-hover" data-barba-update="" data-link-status="not-active">
+              <a class="link-click" href="speakers.html">
+                <span>Speakers</span>
+              </a>
+            </li>
+
+            <li class="link link-hover" data-barba-update="" data-link-status="not-active">
+              <a class="link-click" href="sponsors.html">
+                <span>Sponsors</span>
+              </a>
+            </li>
+
+            <li class="link link-hover" data-barba-update="" data-link-status="not-active">
+              <a class="link-click" href="faq.html">
+                <span>FAQ</span>
+              </a>
+            </li>
+          </ul>
+          <ul>
+            <li class="link link-hover">
+              <a class="link-click" href="https://x.com/gosimfoundation" target="_blank">
+                <span>GOSIM X</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        
+        <div class="col col-newsletter">
+          <div class="col-row col-row-title">
+            <h4>Stay up to date on all things GOSIM 2025</h4>
+          </div>
+          <div class="col-row col-row-input">
+            <Button
+                link="#"
+                text="Join our newsletter"
+                class="btn primary xl btn-hover"
+            />
+          </div>
+          <div class="col-row col-row-text styled-content">
+            <p>Subscribe to the GOSIM Foundation mailing list to stay in the know.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row row-end">
+
+        <div class="col col-logo-gosim2">
+          <div class="logo">
+            <a href="https://gosim.org" target="_blank" class="logo-click">
+              <Logo width="141" height="24" />
+            </a>
+          </div>
+        </div>
+
+        <div class="col col-copyright">
+        </div>
+
+        <div class="col col-dev-credits">
+          <div class="link link-hover">
+            <a class="link-click" href="https://gosim.org/" target="_blank">
+              <span>GOSIM Foundation</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
 
     </div>
-
-    <div>
-
-    </div>
-</footer>
+  </footer>
