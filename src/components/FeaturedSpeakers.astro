@@ -9,9 +9,8 @@ import Button from "components/Button.astro";
 // JSON
 import JSON from "json/Speakers.json";
 
-// Import all images from the 'assets/speakers/' directory
-const images = import.meta.glob<{ default: ImageMetadata }>('assets/speakers/*.{jpeg,jpg,png,gif}');
-console.log(images)
+// Import all images
+const images = import.meta.glob<{ default: ImageMetadata }>('images/speakers/*.{jpeg,jpg,png,gif}');
 
 interface Props {
     title: string;
@@ -22,8 +21,6 @@ interface Props {
 }
 
 const { title, ctaButton } = Astro.props;
-
-console.log(images)
 ---
 
 <section
@@ -50,7 +47,7 @@ console.log(images)
                                 <div class="card-image">
                                     {loop?.image &&
                                         <Picture
-                                            src={images[`/src/assets/speakers/${loop.image}`]()}
+                                            src={images[`/public/images/speakers/${loop.image}`]()}
                                             formats={['webp', 'jpg']}
                                             alt={loop.name}
                                             class="overlay"

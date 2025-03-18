@@ -8,10 +8,11 @@ import Tracks from 'components/Tracks.astro';
 import FeaturedSpeakers from 'components/FeaturedSpeakers.astro';
 import Cards from 'components/Cards.astro';
 import TextAndImage from 'components/TextAndImage.astro';
+import TextAndSponsors from 'components/TextAndSponsors.astro';
 
 // Assets
-import Placeholder from 'assets/homepage/placeholder.jpg';
-import SpotlightBlue from 'assets/homepage/spotlight-bl.svg';
+import Placeholder from 'images/homepage/placeholder.jpg';
+import SpotlightBlue from 'images/homepage/spotlight-bl.svg';
 ---
 
 <Layout
@@ -166,6 +167,41 @@ import SpotlightBlue from 'assets/homepage/spotlight-bl.svg';
 			link: 'https://spotlight.gosim.org/ai2025',
 			openInNewTab: true,
 		}}
+	/>
+
+	<TextAndSponsors
+		title="Thank you to our sponsors"
+		text="Unlock unique marketing opportunities and gain exposure by sponsoring GOSIM. As a sponsor, you'll reach a diverse audience of industry professionals and position your brand as a leader in the field."
+		ctaButton={{
+			text: "See all",
+			link: "https://d23f45a03eac3b57341b79041a0538b4.codepen.website/sponsors.html",
+		}}
+		logos={[
+			{
+				image: "baai.png",
+				imageAlt: "Baai logo"
+			},
+			{
+				image: "baai.png",
+				imageAlt: "Baai logo"
+			},
+			{
+				image: "baai.png",
+				imageAlt: "Baai logo"
+			},
+			{
+				image: "baai.png",
+				imageAlt: "Baai logo"
+			},
+			{
+				image: "baai.png",
+				imageAlt: "Baai logo"
+			},
+			{
+				image: "baai.png",
+				imageAlt: "Baai logo"
+			},
+		]}
 	/>
 
 </Layout>
