@@ -39,9 +39,9 @@ const { title, ctaButton } = Astro.props;
             class="flickity-slider-group four-col count-6"
             data-flickity-slider-type="cards"
         >
-            <ul class="flickity-carousel" style="outline: none;">
+            <div class="flickity-carousel" style="outline: none;">
                 {JSON.speakers?.map((loop) => (
-                    <li class="flickity-slide" data-cursor-bubble-text="Drag">
+                    <div class="flickity-slide" data-cursor-bubble-text="Drag">
                         <div class="single-speakers-card">
                             <div class="card-row card-row-image">
                                 <div class="card-image">
@@ -51,6 +51,8 @@ const { title, ctaButton } = Astro.props;
                                             formats={['webp', 'jpg']}
                                             alt={loop.name}
                                             class="overlay"
+                                            widths={[250, 500, 750, 900]}
+                                            sizes="(max-width: 700px) 58vw, 450px"
                                         />
                                     }
                                 </div>
@@ -62,15 +64,15 @@ const { title, ctaButton } = Astro.props;
                                 </div>
                             </div>
                             <div class="card-row card-row-info">
-                                <h5>{loop.name}</h5>
+                                <h3 class="h5">{loop.name}</h3>
                                 <p>
                                     {loop.description}
                                 </p>
                             </div>
                         </div>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
 
         <div class="row">

@@ -771,7 +771,8 @@ footer {
    justify-content: center;
 }
 
-.section-home-intro .col h3 {
+.section-home-intro .col h3,
+.section-home-intro .col .h3 {
    text-align: center;
 }
 
@@ -932,7 +933,8 @@ footer {
    border-radius: var(--border-radius);
 }
 
-.section-home-why .toggle-audience h5 {
+.section-home-why .toggle-audience h5,
+.section-home-why .toggle-audience .h5 {
    position: absolute;
    text-align: center;
    padding: var(--col-gap);
@@ -956,8 +958,9 @@ footer {
    transform: scale(1) rotate(0.001deg);
 }
 
-.section-home-why .toggle-audience[data-audience-status="active"] h5 {
-   color: var(--color-dark);
+.section-home-why .toggle-audience[data-audience-status="active"] h5,
+.section-home-why .toggle-audience[data-audience-status="active"] .h5 {
+      color: var(--color-dark);
 }
 
 .section-home-why .single-audience-reasons[data-audience-status="active"] {
@@ -1236,7 +1239,8 @@ footer {
    border: 0px;
 }
 
-.section-home-audience .row-audience .col:nth-child(1) .card h3 {
+.section-home-audience .row-audience .col:nth-child(1) .card h3,
+.section-home-audience .row-audience .col:nth-child(1) .card .h3 {
    color: var(--color-white);
 }
 
@@ -1592,7 +1596,8 @@ footer {
    justify-content: flex-start;
 }
 
-.footer .col-newsletter h4 {
+.footer .col-newsletter h4,
+.footer .col-newsletter .h4 {
    line-height: 1.3;
    font-weight: 500;
 }
@@ -2405,8 +2410,9 @@ footer {
    padding-top: calc(var(--row-gap) * 1.5);
 }
 
-.section-awards-categories .accordion .single-accordion-item .top h5 {
-   font-weight: 500;
+.section-awards-categories .accordion .single-accordion-item .top h5,
+.section-awards-categories .accordion .single-accordion-item .top .h5 {
+      font-weight: 500;
 }
 
 .section-awards-categories .accordion .single-accordion-item .bottom-wrap {
@@ -2792,13 +2798,15 @@ footer {
       transform: translateY(0%) rotate(0.001deg);
    }
 
-   .section-awards-prizes .row-tiles .icon-tile .icon-tile-inner h5 {
-      opacity: 0;
+   .section-awards-prizes .row-tiles .icon-tile .icon-tile-inner h5,
+   .section-awards-prizes .row-tiles .icon-tile .icon-tile-inner .h5 {
+         opacity: 0;
       transition: var(--animation-primary);
    }
 
-   .section-awards-prizes .row-tiles .icon-tile:hover .icon-tile-inner h5 {
-      opacity: 1;
+   .section-awards-prizes .row-tiles .icon-tile:hover .icon-tile-inner h5,
+   .section-awards-prizes .row-tiles .icon-tile:hover .icon-tile-inner .h5 {
+         opacity: 1;
    }
 
    .section-awards-prizes .row-tiles .icon-tile-inner svg {

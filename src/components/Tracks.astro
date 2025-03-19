@@ -43,9 +43,9 @@ const { title, list, ctaButton } = Astro.props;
                             <div class="top" data-accordion-toggle>
                                 <div class="left">
                                     <div class="timeslot">
-                                        <h5>{(i + 1).toString().padStart(3, '0')}</h5>
+                                        <p class="h5">{(i + 1).toString().padStart(3, '0')}</p>
                                     </div>
-                                    <h4>{loop.title}</h4>
+                                    <h3 class="h4">{loop.title}</h3>
                                 </div>
                                 <div class="plus">
                                     <div class="plus-fill"></div>

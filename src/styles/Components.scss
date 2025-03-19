@@ -32,7 +32,8 @@
     display: flex;
     gap: 16px;
 }
-.col-custom > h5 {
+.col-custom > h5,
+.col-custom > .h5 {
   margin-top: 16px;
 }
 .custom-aud {
@@ -997,7 +998,8 @@
    gap: 0.25em;
 }
 
-.single-speakers-card h5 {
+.single-speakers-card h5
+.single-speakers-card .h5 {
    position: relative;
    overflow: hidden;
    text-overflow: ellipsis;
@@ -1050,7 +1052,8 @@
    box-shadow: 0px 0.5em 2em 0px rgba(var(--color-glow-rgb), 0.3);
 }
 
-.single-speakers-card h5 {
+.single-speakers-card h5,
+.single-speakers-card .h5 {
    font-size: 1em;
    min-height: calc(1em * 1.2);
    line-height: 1.2;

@@ -38,7 +38,7 @@ const slug = Astro.url.pathname;
         <div class="row row-base">
             <div class="col col-logo-gosim">
                 <div class="logo">
-                    <a href="/" class="logo-click">
+                    <a href="/" aria-label="Go to homepage" class="logo-click">
                         <Logo />
                     </a>
                 </div>
@@ -90,7 +90,7 @@ const slug = Astro.url.pathname;
 
             <div class="col col-newsletter">
                 <div class="col-row col-row-title">
-                    <h4>Stay up to date on all things GOSIM 2025</h4>
+                    <h2 class="h4">Stay up to date on all things GOSIM 2025</h2>
                 </div>
                 <div class="col-row col-row-input">
                     <Button
@@ -115,6 +115,7 @@ const slug = Astro.url.pathname;
                         href="https://gosim.org"
                         target="_blank"
                         class="logo-click"
+                        aria-label="GOSIM Foundation"
                     >
                         <Logo width="141" height="24" />
                     </a>

@@ -41,6 +41,8 @@ const { stats } = Astro.props;
                                     src={loop.image}
                                     formats={['webp', 'jpg']}
                                     alt={loop.imageAlt}
+                                    widths={[120, 240, 360, 480, 660]}
+                                    sizes="(max-width: 768px) 120px, 220px"
                                 />
                             }
                         </div>

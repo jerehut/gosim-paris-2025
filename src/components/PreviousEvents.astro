@@ -32,9 +32,9 @@ const { title, events } = Astro.props;
             class="flickity-slider-group three-col count-3"
             data-flickity-slider-type="cards"
         >
-            <ul class="flickity-carousel">
+            <div class="flickity-carousel">
                 {events?.map((loop) => (
-                    <li class="flickity-slide">
+                    <div class="flickity-slide">
                         <a
                             href={loop.link}
                             target="_blank"
@@ -47,6 +47,8 @@ const { title, events } = Astro.props;
                                             src={loop.image}
                                             formats={['webp', 'jpg']}
                                             alt={loop.title}
+                                            widths={[225, 450, 600, 1000]}
+                                            sizes="(max-width: 480px) 55vw, 500px"
                                         />
                                     }
                                 </div>
@@ -57,9 +59,9 @@ const { title, events } = Astro.props;
                                 <p>{loop.description}</p>
                             </div>
                         </a>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     </div>
 </section>

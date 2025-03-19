@@ -64,6 +64,8 @@ const { title, text, logos, ctaButton } = Astro.props;
                                         src={images[`/public/images/sponsors/${loop.image}`]()}
                                         formats={['webp', 'jpg']}
                                         alt={loop.imageAlt}
+                                        widths={[75, 150, 225, 450]}
+                                        sizes="(max-width: 480px) 75px, 225px"
                                     />
                                 }
                             </div>
