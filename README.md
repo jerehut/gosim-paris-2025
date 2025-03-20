@@ -1,34 +1,39 @@
-# Astro Starter Kit: Basics
+# GOSIM AI Paris 2025
 
-```sh
-npm create astro@latest -- --template basics
-```
+## How to add Schedule
+1. Add data to JSON file at `src/json/Schedule.json`
+2. If you add speaker images, add only the file name, such as `speaker-name.jpg`
+3. Add potential speaker images as PNG or JPG files to `public/images/speakers/`
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## How to add Sponsors
+1. Add data to JSON file at `src/json/Sponsors.json`
+2. Add sponsor file name, such as `sponsor-name.png`
+3. Add sponsor images as PNG / JPG / SVG files to `public/images/sponsors/`
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## How to add FAQ
+1. Add data to JSON file at `src/json/FAQ.json`
 
 ## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
+│   └── fonts
+│   └── icons
+│   └── images
+│       └── speakers
+│       └── sponsors
+│   └── js
+│   └── videos
 ├── src/
 │   ├── layouts/
-│   │   └── Layout.astro
+│   ├── components/
 │   └── pages/
-│       └── index.astro
+│   └── styles/
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+To learn more about the folder structure of an Astro project, refer to [guide on project structure](https://docs.astro.build/en/basics/project-structure/).
 
 ## 🧞 Commands
 
@@ -43,6 +48,6 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Feel free to check [the Astro documentation](https://docs.astro.build).

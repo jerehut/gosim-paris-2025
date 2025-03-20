@@ -1,16 +1,17 @@
 ---
 interface Props {
     title: string;
-    text: string;
+    text?: string;
+    lightgray?: boolean;
 }
 
-const { title, text } = Astro.props;
+const { title, text, lightgray } = Astro.props;
 ---
 
 <section
     class="section default-header"
     data-theme-section="light"
-    data-bg-section="lightgray"
+    data-bg-section={lightgray ? 'lightgray' : 'light'}
     data-scroll-section
 >
     <div class="gradient-circle-wrap">
@@ -23,19 +24,14 @@ const { title, text } = Astro.props;
 
             <div class="col col-title">
                 <div class="col-row col-row-title">
-                    <h1>This Year's Speakers</h1>
+                    <h1>{title}</h1>
                 </div>
             </div>
 
             {text &&
                 <div class="col col-text">
                     <div class="col-row styled-content">
-                        <p>
-                            Get ready to be inspired by our incredible lineup of
-                            great speakers. These industry leaders will share their
-                            expertise and insights, leaving you motivated and ready
-                            to take on new challenges.
-                        </p>
+                        <p>{text}</p>
                     </div>
                 </div>
             }

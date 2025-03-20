@@ -3,23 +3,23 @@
 import Layout from 'layouts/Layout.astro';
 import GetTickets from 'components/GetTickets.astro';
 import HeroText from 'components/HeroText.astro';
-import Schedules from 'components/Schedules.astro';
+import AllSpeakers from 'components/Speakers.astro';
 ---
 
 <Layout
-	title="Schedule – GOSIM AI Paris 2025"
+	title="Speakers – GOSIM AI Paris 2025"
 	description="GOSIM AI Paris 2025 is a gathering of open-source AI projects, developers, researchers, and industry sponsors to share knowledge, learn from each other, and collaborate."
 	navBackground="light"
 	pageTransitionName="Schedule"
 >
 
 	<HeroText
-		title="Schedule: May 6"
+		title="This Year's Speakers"
+        text="Get ready to be inspired by our incredible lineup of great speakers. These industry leaders will share their expertise and insights, leaving you motivated and ready to take on new challenges."
+		lightgray
 	/>
 
-	<Schedules
-		currentDay="May 6"
-	/>
+	<AllSpeakers />
 
 	<GetTickets
 		title="Grab your GOSIM AI Paris ticket"

@@ -40,12 +40,13 @@ const { title, ctaButton } = Astro.props;
             data-flickity-slider-type="cards"
         >
             <div class="flickity-carousel" style="outline: none;">
-                {JSON.speakers?.map((loop) => (
+                {JSON.speakers?.map((loop, i) => (
+                    i < 11 &&
                     <div class="flickity-slide" data-cursor-bubble-text="Drag">
                         <div class="single-speakers-card">
                             <div class="card-row card-row-image">
                                 <div class="card-image">
-                                    {loop?.image &&
+                                    {loop?.image && images[`/public/images/speakers/${loop.image}`] &&
                                         <Picture
                                             src={images[`/public/images/speakers/${loop.image}`]()}
                                             formats={['webp', 'jpg']}
