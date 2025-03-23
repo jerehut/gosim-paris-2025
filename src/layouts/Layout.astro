@@ -4,6 +4,7 @@ import Header from 'components/Header.astro';
 import Footer from 'components/Footer.astro';
 import Loading from 'components/Loading.astro';
 import Seo from 'components/Seo.astro';
+import LoadVideos from 'components/LoadVideos.astro';
 
 // Styles
 import 'styles/Normalize.scss';
@@ -74,6 +75,8 @@ const { title, description, noindex, navDarkMode, navBackground, pageTransitionN
 		<script defer src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js"/>
 		<script defer src="/js/ScrollTrigger.min.js"/>
 		<script defer src="/js/Animations.min.js"/>
+
+		<LoadVideos />
 
 	</body>
 </html>

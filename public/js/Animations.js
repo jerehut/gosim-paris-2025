@@ -551,7 +551,7 @@ function initScript() {
    initCheckScrollUpDown();
    initScrollToAnchor();
    initScrollTriggerDataBackground();
-   initScrollTriggerParallaxScroll();
+   /* initScrollTriggerParallaxScroll(); */
    initScrolltriggerAnimations();
 }
 
@@ -800,7 +800,7 @@ function initBasicFunctions() {
 /**
  * Play Video Inview
  */
-function initScrollTriggerPlayVideoInview() {
+/* function initScrollTriggerPlayVideoInview() {
 
    let allVideoDivs = gsap.utils.toArray('.playpause');
 
@@ -818,7 +818,7 @@ function initScrollTriggerPlayVideoInview() {
          onLeaveBack: () => videoElem.pause(),
       });
    });
-}
+} */
 
 /**
  * Lenis - Check Scroll up or Down
