@@ -10,6 +10,11 @@
 2. Add sponsor file name, such as `sponsor-name.png`
 3. Add sponsor images as PNG / JPG / SVG files to `public/images/sponsors/`
 
+## How to add Speakers
+1. Add data to JSON file at `src/json/Speakers.json`
+2. Add speaker file name, such as `speaker-name.png`
+3. Add speaker images as PNG / JPG files to `public/images/speakers/`
+
 ## How to add FAQ
 1. Add data to JSON file at `src/json/FAQ.json`
 
