@@ -14,6 +14,7 @@
       "js/*": ["src/js/*"],
       "json/*": ["src/json/*"],
       "images/*": ["public/images/*"],
+      "videos/*": ["public/videos/*"],
     }
   }
 }

@@ -436,8 +436,16 @@ function initPageTransitions() {
    function initResetDataAfter() {
       $('[data-navigation-status]').attr('data-navigation-status', 'not-active');
       $('[data-filter-status]').attr('data-filter-status', 'not-active');
+      $('[data-nav-filter-status]').attr('data-nav-filter-status', 'not-active');
       $('[data-scrolling-direction]').attr('data-scrolling-direction', 'down');
       $('[data-scrolling-started]').attr('data-scrolling-started', 'false');
+      $('[data-nav-filter-status]').attr('data-nav-filter-status', 'not-active');
+
+      // Hide filter toggle
+      $('[data-filter-toggle]').css({
+         opacity: 0,
+         visibility: 'hidden'
+      });
    }
 
    barba.init({
@@ -547,7 +555,7 @@ function initScript() {
    initFlickitySlider();
    initCheckWindowHeight();
    initBasicFunctions();
-   initScrollTriggerPlayVideoInview();
+   // initScrollTriggerPlayVideoInview();
    initCheckScrollUpDown();
    initScrollToAnchor();
    initScrollTriggerDataBackground();
