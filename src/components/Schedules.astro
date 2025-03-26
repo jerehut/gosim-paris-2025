@@ -27,15 +27,9 @@ interface Props {
 import scheduleData from "json/Schedule.json";
 
 // Import all images
-const imageImports = import.meta.glob<{ default: ImageMetadata }>(
+const images = import.meta.glob<{ default: ImageMetadata }>(
     "images/speakers/*.{jpeg,jpg,png,gif}",
 );
-const images = await Promise.all(
-    Object.entries(imageImports).map(async ([path, resolver]) => {
-        const { default: image } = await resolver();
-        return [path.replace("/public", ""), image];
-    }),
-).then((entries) => Object.fromEntries(entries));
 
 // Use the provided props or default values
 const { currentDay = "May 6", activeCategory = "ai-model" } = Astro.props;
