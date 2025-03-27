@@ -537,6 +537,14 @@ function initPageTransitions() {
                      duration: 1,
                      offset: navHeight,
                      easing: (x) => (x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2),
+                     onComplete: () => {
+                        // Remove hash from URL
+                        history.replaceState(
+                           null, 
+                           document.title, 
+                           window.location.pathname + window.location.search
+                        );
+                     }
                   });
                } else {
                   // Fallback to default scrolling if Lenis is not available
@@ -546,6 +554,13 @@ function initPageTransitions() {
                         behavior: 'smooth',
                         block: 'start'
                      });
+                     
+                     // Remove hash from URL
+                     history.replaceState(
+                        null, 
+                        document.title, 
+                        window.location.pathname + window.location.search
+                     );
                   }
                }
             }, 300); // Small delay to ensure page is ready
