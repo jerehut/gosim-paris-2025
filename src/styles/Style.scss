@@ -147,15 +147,25 @@ footer {
    }
 }
 
-.has-sublinks > a {
+.has-sublinks > a,
+.has-sublinks > button {
    display: flex;
    gap: 0.25rem;
    align-items: center;
 }
 
 .has-sublinks {
+   display: flex;
+   align-items: center;
+
    svg {
       transition: transform 0.4s;
+   }
+
+   button {
+      background-color: transparent;
+      border-radius: 0;
+      border: unset;
    }
 
    &.active {
@@ -166,9 +176,16 @@ footer {
 }
 
 .mobile-nav-box .has-sublinks {
+   display: block;
+
    svg {
       stroke: #000 !important;
       margin-right: -1rem;
+   }
+
+   button {
+      width: 100%;
+      margin: 0.25rem 0;
    }
 }
 
@@ -561,7 +578,7 @@ footer {
    position: relative;
    transform: translateY(-100%) rotate(0.001deg);
    transition: var(--animation-smooth);
-   padding: 20vh var(--container-padding) 10vh var(--container-padding);
+   padding: 15vh var(--container-padding) 10vh var(--container-padding);
    gap: 5vh;
 }
 

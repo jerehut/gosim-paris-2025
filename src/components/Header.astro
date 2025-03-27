@@ -79,9 +79,9 @@ const slug = Astro.url.pathname;
                             data-has-sublinks={loop.subLinks ? "true" : "false"}
                             data-sublinks={loop.subLinks ? JSON.stringify(loop.subLinks) : "[]"}
                         >
-                            <a class="link-click" href={loop.link}>
-                                <span>{loop.text}</span>
-                                {loop.subLinks && (
+                            {loop?.subLinks ?
+                                <button class="link-click">
+                                    <span>{loop.text}</span>
                                     <svg 
                                         xmlns="http://www.w3.org/2000/svg" 
                                         width="16" 
@@ -96,8 +96,12 @@ const slug = Astro.url.pathname;
                                     >
                                         <path d="m6 9 6 6 6-6" />
                                     </svg>
-                                )}
-                            </a>
+                                </button>
+                                :
+                                <a class="link-click" href={loop.link}>
+                                    <span>{loop.text}</span>
+                                </a>
+                            }
                         </li>
                     ))}
                 </ul>
@@ -153,9 +157,9 @@ const slug = Astro.url.pathname;
                                 data-has-sublinks={loop.subLinks ? "true" : "false"}
                                 data-sublinks={loop.subLinks ? JSON.stringify(loop.subLinks) : "[]"}
                             >
-                                <a class="link-click" href={loop.link}>
-                                    <span>{loop.text}</span>
-                                    {loop.subLinks && (
+                                {loop?.subLinks ?
+                                    <button class="link-click">
+                                        <span>{loop.text}</span>
                                         <svg 
                                             xmlns="http://www.w3.org/2000/svg" 
                                             width="16" 
@@ -170,8 +174,12 @@ const slug = Astro.url.pathname;
                                         >
                                             <path d="m6 9 6 6 6-6" />
                                         </svg>
-                                    )}
-                                </a>
+                                    </button>
+                                    :
+                                    <a class="link-click" href={loop.link}>
+                                        <span>{loop.text}</span>
+                                    </a>
+                                }
                             </li>
                         ))
                     }
