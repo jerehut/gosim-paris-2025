@@ -109,6 +109,14 @@ footer {
    pointer-events: all;
    transform: translateY(0%) rotate(0.001deg);
    transition: transform var(--animation-nav-smooth);
+
+   nav {
+      width: 100%;
+   }
+
+   ul {
+      justify-content: center;
+   }
 }
 
 .main-nav-bar .row {
@@ -126,7 +134,7 @@ footer {
 .main-nav-bar ul {
    display: flex;
    flex-direction: row;
-   gap: calc(var(--col-gap) * 1.5);
+   gap: calc(var(--col-gap) * 1.4);
 }
 
 /* SubLinks Styling */
@@ -398,7 +406,7 @@ footer {
 }
 
 
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 930px) {
 
    .main-nav-bar {
       padding: var(--container-padding);
@@ -576,6 +584,10 @@ footer {
 }
 
 /* Logo */
+
+.logo {
+   z-index: 2;
+}
 
 .mobile-nav-box .box-row-logo svg {
    width: calc(var(--title-size) * 1.5);
