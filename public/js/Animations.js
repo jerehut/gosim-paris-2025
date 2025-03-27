@@ -1,3 +1,54 @@
+// Desktop and Mobile Navigation SubLinks Handling
+const navItems = document.querySelectorAll('.main-nav-bar li, .mobile-nav-box li');
+
+navItems.forEach(item => {
+      // Check if the item has subLinks in the original links array
+      const hasSubLinks = item.getAttribute('data-has-sublinks') === 'true';
+      
+      if (hasSubLinks) {
+         // Create sublinks container
+         const subLinksContainer = document.createElement('ul');
+         subLinksContainer.classList.add('sub-links');
+         
+         // Parse and add sublinks
+         const subLinksData = JSON.parse(item.getAttribute('data-sublinks'));
+         subLinksData.forEach(subLink => {
+            const subLinkItem = document.createElement('li');
+            const subLinkAnchor = document.createElement('a');
+
+            subLinkItem.classList.add('link');
+            subLinkItem.classList.add('link-hover');
+            subLinkAnchor.classList.add('link-click');
+
+            subLinkAnchor.href = subLink.link;
+            subLinkAnchor.textContent = subLink.text;
+
+            if (subLink?.anchor) {
+               subLinkAnchor.setAttribute('data-anchor-target', subLink.anchor);
+               subLinkAnchor.setAttribute('data-page-title', subLink.text);
+            }
+            
+            if (subLink.openInNewTab) {
+                  subLinkAnchor.target = '_blank';
+                  subLinkAnchor.rel = 'noopener noreferrer';
+            }
+            
+            subLinkItem.appendChild(subLinkAnchor);
+            subLinksContainer.appendChild(subLinkItem);
+         });
+         
+         item.appendChild(subLinksContainer);
+         
+         // Mobile toggle functionality
+         item.addEventListener('click', (e) => {
+            // Prevent immediate navigation if sublinks exist
+            if (hasSubLinks) {
+               item.classList.toggle('active');
+            }
+         });
+      }
+});
+
 gsap.registerPlugin(ScrollTrigger);
 
 let scroll;
@@ -1315,61 +1366,3 @@ function initScrolltriggerAnimations() {
       }
    });
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-   // Desktop and Mobile Navigation SubLinks Handling
-   const navItems = document.querySelectorAll('.main-nav-bar li, .mobile-nav-box li');
-   
-   navItems.forEach(item => {
-       // Check if the item has subLinks in the original links array
-       const hasSubLinks = item.getAttribute('data-has-sublinks') === 'true';
-       
-       if (hasSubLinks) {
-           // Create sublinks container
-           const subLinksContainer = document.createElement('ul');
-           subLinksContainer.classList.add('sub-links');
-           
-           // Parse and add sublinks
-           const subLinksData = JSON.parse(item.getAttribute('data-sublinks'));
-           subLinksData.forEach(subLink => {
-               const subLinkItem = document.createElement('li');
-               const subLinkAnchor = document.createElement('a');
-
-               subLinkItem.classList.add('link');
-               subLinkItem.classList.add('link-hover');
-               subLinkAnchor.classList.add('link-click');
-
-               subLinkAnchor.href = subLink.link;
-               subLinkAnchor.textContent = subLink.text;
-
-               if (subLink?.anchor) {
-                  subLinkAnchor.setAttribute('data-anchor-target', subLink.anchor);
-                  subLinkAnchor.setAttribute('data-page-title', subLink.text);
-               } else {
-                  subLinkAnchor.addEventListener('click', (e) => {
-                     window.location.href = subLink.link;
-                 });
-               }
-               
-               if (subLink.openInNewTab) {
-                   subLinkAnchor.target = '_blank';
-                   subLinkAnchor.rel = 'noopener noreferrer';
-               }
-               
-               subLinkItem.appendChild(subLinkAnchor);
-               subLinksContainer.appendChild(subLinkItem);
-           });
-           
-           item.appendChild(subLinksContainer);
-           
-           // Mobile toggle functionality
-           item.addEventListener('click', (e) => {
-               // Prevent immediate navigation if sublinks exist
-               if (hasSubLinks) {
-                   e.preventDefault();
-                   item.classList.toggle('active');
-               }
-           });
-       }
-   });
-});
