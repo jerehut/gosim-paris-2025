@@ -18,6 +18,9 @@
 ## How to add FAQ
 1. Add data to JSON file at `src/json/FAQ.json`
 
+## How to edit Markdown pages (Code of Conduct, Privacy, Workshop)
+1. Edit the Markdown file at `src/markdown/`
+
 ## 🚀 Project Structure
 
 ```text
