@@ -1385,14 +1385,22 @@
    }
    
    .stars {
-      color: #d97706;
+      color: #AB5C03;
+
+      span {
+         font-size: 0.75rem
+      }
    }
    
    .age {
       color: #1c1d24;
       display: flex;
-      gap: 0.5rem;
+      gap: 0.45rem;
       align-items: center;
+
+      span {
+         font-size: 0.75rem
+      }
    }
    
    @keyframes marquee {

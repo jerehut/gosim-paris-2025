@@ -33,7 +33,7 @@ import projects from "json/Marquee.json";
                                 <div class="project-details">
                                     <h3>{project.name}</h3>
                                     <div class="project-stats">
-                                        <span class="stars">★ {project.stars} <span style="font-size: 0.75rem;">stars</span></span>
+                                        <span class="stars">★ {project.stars} <span>stars</span></span>
                                         <span class="age"> 
                                             <img
                                                 src="/icons/month.svg"
@@ -43,7 +43,7 @@ import projects from "json/Marquee.json";
                                                 height="14"
                                             /> {' '}
                                             {project.age} {' '}
-                                            <span style="font-size: 0.75rem;">months</span>
+                                            <span>months</span>
                                         </span>
                                     </div>
                                 </div>
@@ -61,6 +61,9 @@ import projects from "json/Marquee.json";
                                         src={project.avatar}
                                         alt={project.name}
                                         class="avatar"
+                                        loading="lazy"
+                                        width="48"
+                                        height="48"
                                     />
                                 </div>
                                 <div class="project-details">
