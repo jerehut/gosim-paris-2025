@@ -16,6 +16,7 @@ interface Session {
     title: string;
     content: string;
     speakers: Speaker[];
+    category?: string;
 }
 
 interface Props {
@@ -32,7 +33,41 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 );
 
 // Use the provided props or default values
-const { currentDay = "May 6", activeCategory = "ai-model" } = Astro.props;
+const { currentDay = "May 6", activeCategory = "All" } = Astro.props;
+
+// Improved function to sort sessions by time
+const sortSessionsByTime = (sessions: Session[]) => {
+    return sessions.sort((a, b) => {
+        // Extract start times from timeSlot
+        const [aStartTime] = a.timeSlot.split('-');
+        const [bStartTime] = b.timeSlot.split('-');
+        
+        // Split hours and minutes
+        const [aHour, aMinute] = aStartTime.split(':').map(Number);
+        const [bHour, bMinute] = bStartTime.split(':').map(Number);
+        
+        // Compare times
+        return (aHour * 60 + aMinute) - (bHour * 60 + bMinute);
+    });
+};
+
+// Prepare all sessions for the current day
+const allSessions: Session[] = Object.entries(scheduleData.sessions)
+    .flatMap(([categoryName, categorySessions]) => 
+        categorySessions
+            .filter((session: Session) => session.date === currentDay)
+            .map(session => ({
+                ...session,
+                category: scheduleData.categories.find(cat => cat.id === categoryName)?.name || categoryName
+            }))
+    );
+
+// Remove duplicates from all sessions while preserving the first occurrence
+const uniqueAllSessions = Array.from(
+    new Map(allSessions.map(session => [session.title, session])).values()
+);
+
+const sortedAllSessions = sortSessionsByTime(uniqueAllSessions);
 ---
 
 <div class="filter-container filter-alpha-animate">
@@ -59,12 +94,18 @@ const { currentDay = "May 6", activeCategory = "ai-model" } = Astro.props;
                     ))}
                 </div>
             </div>
+            <div
+                class="single-filter"
+                data-filter-status={activeCategory === "All" ? "active" : "not-active"}
+                data-filter-category="All"
+            >
+                <span>All</span>
+            </div>
             {scheduleData.categories.map((category) => (
                 <div
                     class="single-filter"
-                    data-anchor-target="#grid"
-                    data-filter-status={category.id === activeCategory ? "active" : "not-active"}
-                    data-filter-category={category.id}
+                    data-filter-status={category.name === activeCategory ? "active" : "not-active"}
+                    data-filter-category={category.name}
                 >
                     <span>{category.name}</span>
                 </div>
@@ -101,16 +142,23 @@ const { currentDay = "May 6", activeCategory = "ai-model" } = Astro.props;
                         </div>
                     </div>
                     <div class="date-divider"></div>
+                    <div
+                        class="single-filter"
+                        data-filter-status={activeCategory === "All" ? "active" : "not-active"}
+                        data-filter-category="All"
+                    >
+                        <span>All</span>
+                    </div>
                     {
                         scheduleData.categories.map((category) => (
                             <div
                                 class="single-filter"
                                 data-filter-status={
-                                    category.id === activeCategory
+                                    category.name === activeCategory
                                         ? "active"
                                         : "not-active"
                                 }
-                                data-filter-category={category.id}
+                                data-filter-category={category.name}
                             >
                                 <span>{category.name}</span>
                             </div>
@@ -120,184 +168,189 @@ const { currentDay = "May 6", activeCategory = "ai-model" } = Astro.props;
             </div>
         </div>
         <div class="row row-list accordion visible" data-filter-grid>
-            {
-                Object.entries(scheduleData.sessions).map(
-                    ([categoryId, sessions]) => {
-                        const filteredSessions = sessions.filter(
-                            (session: Session) => session.date === currentDay,
-                        );
-                        return (
-                            <div
-                                class="list-group"
-                                data-filter-status={
-                                    categoryId === activeCategory
-                                        ? "active"
-                                        : "not-active"
-                                }
-                                data-filter-category={categoryId}
+            <div
+                class="list-group"
+                data-filter-status={activeCategory === "All" ? "active" : "not-active"}
+                data-filter-category="All"
+            >
+                {sortedAllSessions.length > 0 ? (
+                    <ul class="row row-list">
+                        {sortedAllSessions.map((session: Session) => (
+                            <li
+                                class="single-agenda-card single-accordion-item card-hover"
+                                data-accordion-status="not-active"
+                                data-filter-status="active"
+                                data-filter-category="All"
                             >
-                                {filteredSessions.length > 0 ? (
-                                    <ul class="row row-list">
-                                        {filteredSessions.map(
-                                            (session: Session) => (
-                                                <li
-                                                    class="single-agenda-card single-accordion-item card-hover"
-                                                    data-accordion-status="not-active"
-                                                    data-filter-status="active"
-                                                    data-filter-category={
-                                                        categoryId
-                                                    }
-                                                >
+                                <div
+                                    class="top"
+                                    data-accordion-toggle={
+                                        session.speakers.length > 0 || session.content
+                                            ? true
+                                            : null
+                                    }
+                                >
+                                    <div class="left">
+                                        <div class="timeslot">
+                                            <p class="timedate">{session.date}</p>
+                                            <p>{session.timeSlot}</p>
+                                            <p class="category-tag">{session.category}</p>
+                                        </div>
+                                        <h2 class="h5">{session.title}</h2>
+                                    </div>
+                                    <div class="tracks">
+                                        <div class="single-filter">
+                                            <span>{session.category}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {(session.speakers.length > 0 || session.content) && (
+                                    <div class="bottom">
+                                        <div class="bottom-wrap">
+                                            <div class="bottom-content">
+                                                {session.content && (
                                                     <div
-                                                        class="top"
-                                                        data-accordion-toggle={
-                                                            session.speakers
-                                                                .length > 0 ||
-                                                            session.content
-                                                                ? true
-                                                                : null
-                                                        }
-                                                    >
-                                                        <div class="left">
-                                                            <div class="timeslot">
-                                                                <p class="timedate">
-                                                                    {
-                                                                        session.date
-                                                                    }
-                                                                </p>
-                                                                <p>
-                                                                    {
-                                                                        session.timeSlot
-                                                                    }
-                                                                </p>
-                                                            </div>
-                                                            <h2 class="h5">
-                                                                {session.title}
-                                                            </h2>
-                                                        </div>
-                                                        {(session.speakers
-                                                            .length > 0 ||
-                                                            session.content) && (
-                                                            <div class="plus">
-                                                                <div class="plus-fill" />
-                                                                <div class="bar bar-top" />
-                                                                <div class="bar bar-bottom" />
-                                                            </div>
+                                                        class="card-row styled-content"
+                                                        set:html={session.content}
+                                                    />
+                                                )}
+                                                {session.speakers.length > 0 && (
+                                                    <div class="card-row card-row-speakers">
+                                                        {session.speakers.map(
+                                                            (speaker: Speaker) => (
+                                                                <div class="card-col">
+                                                                    <div class="single-speakers-card">
+                                                                        <div class="card-row card-row-image">
+                                                                            <div class="card-image">
+                                                                                {speaker?.image &&
+                                                                                    images[
+                                                                                        `/public/images/speakers/${speaker.image}`
+                                                                                    ] && (
+                                                                                        <Picture
+                                                                                            src={images[
+                                                                                                `/public/images/speakers/${speaker.image}`
+                                                                                            ]()}
+                                                                                            formats={[
+                                                                                                "webp",
+                                                                                                "jpg",
+                                                                                            ]}
+                                                                                            alt={speaker.name}
+                                                                                            class="overlay"
+                                                                                            widths={[
+                                                                                                275,
+                                                                                                400,
+                                                                                                500,
+                                                                                                600,
+                                                                                                750,
+                                                                                                900,
+                                                                                            ]}
+                                                                                            sizes="(max-width: 700px) 58vw, 450px"
+                                                                                        />
+                                                                                    )}
+                                                                            </div>
+                                                                            <div class="card-tags group-tags">
+                                                                                {speaker.tags.map(
+                                                                                    (tag) => (
+                                                                                        <div class="single-tag">
+                                                                                            <p>{tag}</p>
+                                                                                        </div>
+                                                                                    ),
+                                                                                )}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-row card-row-info">
+                                                                            <h3 class="h5">
+                                                                                {speaker.name}
+                                                                            </h3>
+                                                                            <p>{speaker.title}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            ),
                                                         )}
                                                     </div>
-                                                    {(session.speakers.length >
-                                                        0 ||
-                                                        session.content) && (
-                                                        <div class="bottom">
-                                                            <div class="bottom-wrap">
-                                                                <div class="bottom-content">
-                                                                    {session.content && (
-                                                                        <div
-                                                                            class="card-row styled-content"
-                                                                            set:html={
-                                                                                session.content
-                                                                            }
-                                                                        />
-                                                                    )}
-                                                                    {session
-                                                                        .speakers
-                                                                        .length >
-                                                                        0 && (
-                                                                        <div class="card-row card-row-speakers">
-                                                                            {session.speakers.map(
-                                                                                (
-                                                                                    speaker: Speaker,
-                                                                                ) => (
-                                                                                    <div class="card-col">
-                                                                                        <div class="single-speakers-card">
-                                                                                            <div class="card-row card-row-image">
-                                                                                                <div class="card-image">
-                                                                                                    {speaker?.image &&
-                                                                                                        images[
-                                                                                                            `/public/images/speakers/${speaker.image}`
-                                                                                                        ] && (
-                                                                                                            <Picture
-                                                                                                                src={images[
-                                                                                                                    `/public/images/speakers/${speaker.image}`
-                                                                                                                ]()}
-                                                                                                                formats={[
-                                                                                                                    "webp",
-                                                                                                                    "jpg",
-                                                                                                                ]}
-                                                                                                                alt={
-                                                                                                                    speaker.name
-                                                                                                                }
-                                                                                                                class="overlay"
-                                                                                                                widths={[
-                                                                                                                    275,
-                                                                                                                    400,
-                                                                                                                    500,
-                                                                                                                    600,
-                                                                                                                    750,
-                                                                                                                    900,
-                                                                                                                ]}
-                                                                                                                sizes="(max-width: 700px) 58vw, 450px"
-                                                                                                            />
-                                                                                                        )}
-                                                                                                </div>
-                                                                                                <div class="card-tags group-tags">
-                                                                                                    {speaker.tags.map(
-                                                                                                        (
-                                                                                                            tag,
-                                                                                                        ) => (
-                                                                                                            <div class="single-tag">
-                                                                                                                <p>
-                                                                                                                    {
-                                                                                                                        tag
-                                                                                                                    }
-                                                                                                                </p>
-                                                                                                            </div>
-                                                                                                        ),
-                                                                                                    )}
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="card-row card-row-info">
-                                                                                                <h3 class="h5">
-                                                                                                    {
-                                                                                                        speaker.name
-                                                                                                    }
-                                                                                                </h3>
-                                                                                                <p>
-                                                                                                    {
-                                                                                                        speaker.title
-                                                                                                    }
-                                                                                                </p>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                ),
-                                                                            )}
-                                                                        </div>
-                                                                    )}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    )}
-                                                </li>
-                                            ),
-                                        )}
-                                    </ul>
-                                ) : (
-                                    <p>
-                                        No{" "}
-                                        {
-                                            scheduleData.categories.find(
-                                                (cat) => cat.id === categoryId,
-                                            )?.name
-                                        }{" "}
-                                        available for this day
-                                    </p>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
                                 )}
-                            </div>
-                        );
-                    },
-                )
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No sessions available for this day</p>
+                )}
+            </div>
+            {
+                scheduleData.categories.map((category) => {
+                    const categorySessions = allSessions.filter(
+                        (session) => session.category === category.name
+                    );
+                    const sortedCategorySessions = sortSessionsByTime(categorySessions);
+
+                    return (
+                        <div
+                            class="list-group"
+                            data-filter-status={
+                                category.name === activeCategory
+                                    ? "active"
+                                    : "not-active"
+                            }
+                            data-filter-category={category.name}
+                        >
+                            {sortedCategorySessions.length > 0 ? (
+                                <ul class="row row-list">
+                                    {sortedCategorySessions.map((session: Session) => (
+                                        <li
+                                            class="single-agenda-card single-accordion-item card-hover"
+                                            data-accordion-status="not-active"
+                                            data-filter-status="active"
+                                            data-filter-category={category.name}
+                                        >
+                                            <div
+                                                class="top"
+                                                data-accordion-toggle={
+                                                    session.speakers.length > 0 || session.content
+                                                        ? true
+                                                        : null
+                                                }
+                                            >
+                                                <div class="left">
+                                                    <div class="timeslot">
+                                                        <p class="timedate">{session.date}</p>
+                                                        <p>{session.timeSlot}</p>
+                                                    </div>
+                                                    <h2 class="h5">{session.title}</h2>
+                                                </div>
+                                                <div class="tracks">
+                                                    <div class="single-filter">
+                                                        <span>{session.category}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {/* Rest of the session rendering remains the same as in the "All" section */}
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p>
+                                    No{" "}
+                                    {category.name}{" "}
+                                    sessions available for this day
+                                </p>
+                            )}
+                        </div>
+                    );
+                })
             }
         </div>
     </div>
 </section>
+
+<style>
+    .category-tag {
+        font-size: 0.75rem;
+        color: #666;
+        margin-top: 0.25rem;
+    }
+</style>

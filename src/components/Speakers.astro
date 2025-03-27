@@ -84,7 +84,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
                             .toLowerCase()
                             .replace(/ /g, "-")}
                     >
-                        <div
+                        <a
+                            href={`/speakers/${speaker.name.toLowerCase().replace(/\s+/g, "-")}/`}
                             class="single-speakers-card"
                             data-modal-card-status="not-active"
                             data-modal-card-id={speaker.name
@@ -117,7 +118,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
                                 <h2 class="h5">{speaker.name}</h2>
                                 <p>{speaker.description}</p>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 ))
             }

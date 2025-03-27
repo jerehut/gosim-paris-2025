@@ -13,15 +13,15 @@
     ],
     "categories": [
         {
-            "name": "AI model",
+            "name": "AI Model",
             "id": "ai-model"
         },
         {
-            "name": "AI infra",
+            "name": "AI Infra",
             "id": "ai-infra"
         },
         {
-            "name": "AI apps",
+            "name": "AI Apps",
             "id": "ai-apps"
         },
         {
@@ -29,16 +29,16 @@
             "id": "embodied-ai"
         },
         {
-            "name": "AI for science",
+            "name": "AI for Science",
             "id": "ai-science"
         },
         {
-            "name": "Global collaboration",
+            "name": "Global Collaboration",
             "id": "global-collaboration"
         }
     ],
     "sessions": {
-        "ai-model": [
+        "AI Model": [
             {
                 "date": "May 6",
                 "timeSlot": "12:45-14:00",
@@ -49,7 +49,7 @@
             {
                 "date": "May 6",
                 "timeSlot": "12:45-14:00",
-                "title": "Some name for a session on the schedule",
+                "title": "Some name for an AI Model session on the schedule",
                 "content": "<p><strong>The open source landscape today </strong></p><p>Two presentations from two different perspectives of tech </p><p>We'll cover: </p><ul><li>The changing landscape of mainstream </li><li>Consumer preferences</li></ul><p><strong>More speakers to be confirmed </strong></p>",
                 "speakers": [
                     {
@@ -78,11 +78,110 @@
                 "speakers": []
             }
         ],
-        "ai-infra": [
+        "AI Infra": [
             {
                 "date": "May 6",
                 "timeSlot": "10:05-10:50",
-                "title": "Some name for a session on the schedule",
+                "title": "Some name for an AI Infra session on the schedule",
+                "content": "<p><strong>The open source landscape today </strong></p><p>Two presentations from two different perspectives of tech </p><p>We'll cover: </p><ul><li>The changing landscape of mainstream </li><li>Consumer preferences</li></ul><p><strong>More speakers to be confirmed </strong></p>",
+                "speakers": [
+                    {
+                        "name": "Fiona McDonnell",
+                        "title": "VP Global Partner Services",
+                        "tags": [
+                            "Technology"
+                        ],
+                        "image": "speaker-placeholder.jpg"
+                    },
+                    {
+                        "name": "Dorothy Creamer",
+                        "title": "Senior Research Manager",
+                        "tags": [
+                            "Consultant"
+                        ],
+                        "image": "speaker-placeholder.jpg"
+                    }
+                ]
+            },
+            {
+                "date": "May 6",
+                "timeSlot": "12:45-14:00",
+                "title": "Lunch",
+                "content": "",
+                "speakers": []
+            }
+        ],
+        "AI Apps": [
+            {
+                "date": "May 6",
+                "timeSlot": "10:05-10:50",
+                "title": "Some name for an AI Apps session on the schedule",
+                "content": "<p><strong>The open source landscape today </strong></p><p>Two presentations from two different perspectives of tech </p><p>We'll cover: </p><ul><li>The changing landscape of mainstream </li><li>Consumer preferences</li></ul><p><strong>More speakers to be confirmed </strong></p>",
+                "speakers": [
+                    {
+                        "name": "Fiona McDonnell",
+                        "title": "VP Global Partner Services",
+                        "tags": [
+                            "Technology"
+                        ],
+                        "image": "speaker-placeholder.jpg"
+                    },
+                    {
+                        "name": "Dorothy Creamer",
+                        "title": "Senior Research Manager",
+                        "tags": [
+                            "Consultant"
+                        ],
+                        "image": "speaker-placeholder.jpg"
+                    }
+                ]
+            },
+            {
+                "date": "May 6",
+                "timeSlot": "12:45-14:00",
+                "title": "Lunch",
+                "content": "",
+                "speakers": []
+            }
+        ],
+        "Embodied AI": [
+            {
+                "date": "May 6",
+                "timeSlot": "10:05-10:50",
+                "title": "Some name for an Embodied AI session on the schedule",
+                "content": "<p><strong>The open source landscape today </strong></p><p>Two presentations from two different perspectives of tech </p><p>We'll cover: </p><ul><li>The changing landscape of mainstream </li><li>Consumer preferences</li></ul><p><strong>More speakers to be confirmed </strong></p>",
+                "speakers": [
+                    {
+                        "name": "Fiona McDonnell",
+                        "title": "VP Global Partner Services",
+                        "tags": [
+                            "Technology"
+                        ],
+                        "image": "speaker-placeholder.jpg"
+                    },
+                    {
+                        "name": "Dorothy Creamer",
+                        "title": "Senior Research Manager",
+                        "tags": [
+                            "Consultant"
+                        ],
+                        "image": "speaker-placeholder.jpg"
+                    }
+                ]
+            },
+            {
+                "date": "May 6",
+                "timeSlot": "12:45-14:00",
+                "title": "Lunch",
+                "content": "",
+                "speakers": []
+            }
+        ],
+        "AI for Science": [
+            {
+                "date": "May 6",
+                "timeSlot": "10:05-10:50",
+                "title": "Some name for an AI for Science session on the schedule",
                 "content": "<p><strong>The open source landscape today </strong></p><p>Two presentations from two different perspectives of tech </p><p>We'll cover: </p><ul><li>The changing landscape of mainstream </li><li>Consumer preferences</li></ul><p><strong>More speakers to be confirmed </strong></p>",
                 "speakers": [
                     {
@@ -104,89 +203,11 @@
                 ]
             }
         ],
-        "ai-apps": [
+        "Global Collaboration": [
             {
                 "date": "May 6",
                 "timeSlot": "10:05-10:50",
-                "title": "Some name for a session on the schedule",
-                "content": "<p><strong>The open source landscape today </strong></p><p>Two presentations from two different perspectives of tech </p><p>We'll cover: </p><ul><li>The changing landscape of mainstream </li><li>Consumer preferences</li></ul><p><strong>More speakers to be confirmed </strong></p>",
-                "speakers": [
-                    {
-                        "name": "Fiona McDonnell",
-                        "title": "VP Global Partner Services",
-                        "tags": [
-                            "Technology"
-                        ],
-                        "image": "speaker-placeholder.jpg"
-                    },
-                    {
-                        "name": "Dorothy Creamer",
-                        "title": "Senior Research Manager",
-                        "tags": [
-                            "Consultant"
-                        ],
-                        "image": "speaker-placeholder.jpg"
-                    }
-                ]
-            }
-        ],
-        "embodied-ai": [
-            {
-                "date": "May 6",
-                "timeSlot": "10:05-10:50",
-                "title": "Some name for a session on the schedule",
-                "content": "<p><strong>The open source landscape today </strong></p><p>Two presentations from two different perspectives of tech </p><p>We'll cover: </p><ul><li>The changing landscape of mainstream </li><li>Consumer preferences</li></ul><p><strong>More speakers to be confirmed </strong></p>",
-                "speakers": [
-                    {
-                        "name": "Fiona McDonnell",
-                        "title": "VP Global Partner Services",
-                        "tags": [
-                            "Technology"
-                        ],
-                        "image": "speaker-placeholder.jpg"
-                    },
-                    {
-                        "name": "Dorothy Creamer",
-                        "title": "Senior Research Manager",
-                        "tags": [
-                            "Consultant"
-                        ],
-                        "image": "speaker-placeholder.jpg"
-                    }
-                ]
-            }
-        ],
-        "ai-science": [
-            {
-                "date": "May 6",
-                "timeSlot": "10:05-10:50",
-                "title": "Some name for a session on the schedule",
-                "content": "<p><strong>The open source landscape today </strong></p><p>Two presentations from two different perspectives of tech </p><p>We'll cover: </p><ul><li>The changing landscape of mainstream </li><li>Consumer preferences</li></ul><p><strong>More speakers to be confirmed </strong></p>",
-                "speakers": [
-                    {
-                        "name": "Fiona McDonnell",
-                        "title": "VP Global Partner Services",
-                        "tags": [
-                            "Technology"
-                        ],
-                        "image": "speaker-placeholder.jpg"
-                    },
-                    {
-                        "name": "Dorothy Creamer",
-                        "title": "Senior Research Manager",
-                        "tags": [
-                            "Consultant"
-                        ],
-                        "image": "speaker-placeholder.jpg"
-                    }
-                ]
-            }
-        ],
-        "global-collaboration": [
-            {
-                "date": "May 6",
-                "timeSlot": "10:05-10:50",
-                "title": "Some name for a session on the schedule",
+                "title": "Some name for a Global Collaboration session on the schedule",
                 "content": "<p><strong>The open source landscape today </strong></p><p>Two presentations from two different perspectives of tech </p><p>We'll cover: </p><ul><li>The changing landscape of mainstream </li><li>Consumer preferences</li></ul><p><strong>More speakers to be confirmed </strong></p>",
                 "speakers": [
                     {

@@ -17,6 +17,11 @@ function initLoaderShort() {
       cursor: "auto",
    });
 
+   // Set overflow: hidden before animations
+   tl.set(".main-nav-bar ul", {
+      overflow: "hidden"
+   });
+
    tl.set(".transition-screen", {
       opacity: 1,
       yPercent: 100,
@@ -27,6 +32,10 @@ function initLoaderShort() {
       pageTransitionOut();
       $('.loading-container').addClass('loaded');
    }, null, 0);
+
+   tl.call(function() {
+	   document.querySelector('.main-nav-bar ul').style.overflow = 'unset';
+	});
 }
 
 // Animation - Page Loader
@@ -173,6 +182,11 @@ function initLoaderHome(isInitialLoad = false) {
          });
          scroll.start();
       }, null, 3.5);
+
+      // Set overflow: unset after animations
+	   tl.call(function() {
+         document.querySelector('.main-nav-bar ul').style.overflow = 'unset';
+       }, null, 3.5);
    } else {
       // Initial load steps if any
    }
@@ -189,6 +203,11 @@ function initLoader(isInitialLoad = false) {
 
       tl.set("html", { 
          cursor: "auto",
+      });
+
+      // Set overflow: hidden before animations
+      tl.set(".main-nav-bar ul", {
+         overflow: "hidden"
       });
 
       tl.set(".transition-screen", {
@@ -255,6 +274,11 @@ function initLoader(isInitialLoad = false) {
       tl.call(function() {
          $('.modal-container .overlay-background-video').find('video').trigger('play');
       }, null, 0.5);
+
+      // Set overflow: unset after animations
+	   tl.call(function() {
+         document.querySelector('.main-nav-bar ul').style.overflow = 'unset';
+       });
    } else {
       // Initial load steps if any
    }
@@ -356,6 +380,11 @@ function pageTransitionOut() {
       });
    }
 
+   // Set overflow: hidden before animations
+   tl.set(".main-nav-bar ul", {
+      overflow: "hidden"
+   });
+
    tl.set(".main-nav-bar nav li", {
       yPercent: 120,
    });
@@ -374,6 +403,11 @@ function pageTransitionOut() {
       ease: "Expo.easeOut",
       delay: 0.8
    });
+
+   // Set overflow: unset after animations
+	tl.call(function() {
+	   document.querySelector('.main-nav-bar ul').style.overflow = 'unset';
+	});
 
    if(document.querySelector('.section-home-header')) {
       tl.to(".event-facts > *", {
@@ -418,9 +452,54 @@ function initPageTransitions() {
    // Reset scroll on page next
    history.scrollRestoration = "manual";
 
-   barba.hooks.afterEnter(() => {
+   barba.hooks.afterEnter((data) => {
+      // Ensure scroll is reset
       window.scrollTo(0, 0);
       ScrollTrigger.refresh();
+
+      // Find the anchor target based on the current URL hash
+      const hash = window.location.hash;
+      
+      if (hash) {
+         // Find the link that matches this hash
+         const matchingLink = document.querySelector(`[data-anchor-target="${hash}"]`);
+         
+         if (matchingLink) {
+            // Update page title if available
+            const pageTitle = matchingLink.getAttribute('data-page-title') || 
+                              matchingLink.textContent || 
+                              document.title;
+            
+            // Update the page title in the loading animation
+            const pageTitleElement = document.querySelector('[data-change-page-title]');
+            if (pageTitleElement) {
+               pageTitleElement.textContent = pageTitle;
+            }
+
+            // Scroll to the anchor
+            setTimeout(() => {
+               const navHeight = $(".main-nav-bar").innerHeight() * -1;
+               
+               // Use Lenis scroll method
+               if (scroll && typeof scroll.scrollTo === 'function') {
+                  scroll.scrollTo(hash, {
+                     duration: 1,
+                     offset: navHeight,
+                     easing: (x) => (x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2),
+                  });
+               } else {
+                  // Fallback to default scrolling if Lenis is not available
+                  const targetElement = document.querySelector(hash);
+                  if (targetElement) {
+                     targetElement.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                     });
+                  }
+               }
+            }, 300); // Small delay to ensure page is ready
+         }
+      }
    });
    
    barba.hooks.leave(() => {
@@ -479,6 +558,12 @@ function initPageTransitions() {
             pageTransitionOut(data.next);
          },
          async beforeEnter(data) {
+            // Ensure page title is reset before new page loads
+            const pageTitleElement = document.querySelector('[data-change-page-title]');
+            if (pageTitleElement) {
+               pageTitleElement.textContent = data.next.container.getAttribute('data-page-title') || document.title;
+            }
+            
             ScrollTrigger.getAll().forEach(t => t.kill());
             initSmoothScroll(data.next.container);
             initScript(); 
@@ -505,6 +590,12 @@ function initPageTransitions() {
             pageTransitionOut(data.next);
          },
          async beforeEnter(data) {
+            // Ensure page title is reset before new page loads
+            const pageTitleElement = document.querySelector('[data-change-page-title]');
+            if (pageTitleElement) {
+               pageTitleElement.textContent = data.next.container.getAttribute('data-page-title') || document.title;
+            }
+            
             ScrollTrigger.getAll().forEach(t => t.kill());
             initSmoothScroll(data.next.container);
             initScript(); 
@@ -873,12 +964,17 @@ function initCheckScrollUpDown() {
  * Lenis - ScrollTo Anchor Links
  */
 function initScrollToAnchor() {
-
    var scrollToOffset = ($(".main-nav-bar").innerHeight() * -1);
-   $("[data-anchor-target]").click(function() {
-
+   
+   $("[data-anchor-target]").click(function(e) {
       let targetScrollToAnchorLenis = $(this).attr('data-anchor-target');
-      scroll.scrollTo(targetScrollToAnchorLenis,{
+      
+      // Update page title
+      const pageTitle = $(this).attr('data-page-title') || $(this).text();
+      $('[data-change-page-title]').text(pageTitle);
+      
+      // Scroll to anchor
+      scroll.scrollTo(targetScrollToAnchorLenis, {
          duration: 1,
          offset: scrollToOffset,
          easing: (x) => (x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2),
@@ -887,7 +983,7 @@ function initScrollToAnchor() {
 
    $(".filter-container [data-filter-category]").click(function() {
       setTimeout(function() {
-         scroll.scrollTo("#grid",{
+         scroll.scrollTo("#grid", {
             immediate: true,
             offset: scrollToOffset,
          });
@@ -1219,3 +1315,70 @@ function initScrolltriggerAnimations() {
       }
    });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+   // Desktop and Mobile Navigation SubLinks Handling
+   const navItems = document.querySelectorAll('.main-nav-bar li, .mobile-nav-box li');
+   
+   navItems.forEach(item => {
+       // Check if the item has subLinks in the original links array
+       const hasSubLinks = item.getAttribute('data-has-sublinks') === 'true';
+       
+       if (hasSubLinks) {
+           // Create sublinks container
+           const subLinksContainer = document.createElement('ul');
+           subLinksContainer.classList.add('sub-links');
+           
+           // Parse and add sublinks
+           const subLinksData = JSON.parse(item.getAttribute('data-sublinks'));
+           subLinksData.forEach(subLink => {
+               const subLinkItem = document.createElement('li');
+               const subLinkAnchor = document.createElement('a');
+
+               subLinkItem.classList.add('link');
+               subLinkItem.classList.add('link-hover');
+               subLinkAnchor.classList.add('link-click');
+
+               subLinkAnchor.href = subLink.link;
+               subLinkAnchor.textContent = subLink.text;
+
+               if (subLink?.anchor) {
+                  subLinkAnchor.setAttribute('data-anchor-target', subLink.anchor);
+                  subLinkAnchor.setAttribute('data-page-title', subLink.text);
+               } else {
+                  subLinkAnchor.addEventListener('click', (e) => {
+                     window.location.href = subLink.link;
+                 });
+               }
+               
+               if (subLink.openInNewTab) {
+                   subLinkAnchor.target = '_blank';
+                   subLinkAnchor.rel = 'noopener noreferrer';
+               }
+               
+               subLinkItem.appendChild(subLinkAnchor);
+               subLinksContainer.appendChild(subLinkItem);
+           });
+           
+           item.appendChild(subLinksContainer);
+           
+           // Mobile and Desktop interaction
+           item.addEventListener('mouseenter', () => {
+               item.classList.add('active');
+           });
+           
+           item.addEventListener('mouseleave', () => {
+               item.classList.remove('active');
+           });
+           
+           // Mobile toggle functionality
+           item.addEventListener('click', (e) => {
+               // Prevent immediate navigation if sublinks exist
+               if (hasSubLinks) {
+                   e.preventDefault();
+                   item.classList.toggle('active');
+               }
+           });
+       }
+   });
+});

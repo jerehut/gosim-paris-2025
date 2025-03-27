@@ -12,6 +12,7 @@ import TextAndSponsors from 'components/TextAndSponsors.astro';
 import VenueInfo from 'components/VenueInfo.astro';
 import PreviousEvents from 'components/PreviousEvents.astro';
 import GetTickets from 'components/GetTickets.astro';
+import Marquee from 'components/Marquee.astro';
 
 // Images
 import Placeholder from 'images/homepage/placeholder.jpg';
@@ -55,7 +56,7 @@ import GosimBeijing from 'images/homepage/gosim-beijing.png';
 		<Intro>
 			<h1 class="h3 light split-words animate-read">
 				Paris, the City of Light, transforms into the City of Artificial Brilliance this May. GOSIM AI 2025 invites visionaries, disruptors, and pioneers to converge
-				at <b class="anchor-span" data-anchor-target="#venueclick">Station F</b>, a crucible of innovation—to shape the next frontier of AI.
+				at <b class="anchor-span" data-anchor-target="#venue">Station F</b>, a crucible of innovation—to shape the next frontier of AI.
 			</h1>
 		</Intro>
 
@@ -82,6 +83,8 @@ import GosimBeijing from 'images/homepage/gosim-beijing.png';
 				}
 			]}
 		/>
+
+		<Marquee />
 	</div>
 
 	<Tracks
