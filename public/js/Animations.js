@@ -1362,15 +1362,6 @@ document.addEventListener('DOMContentLoaded', () => {
            
            item.appendChild(subLinksContainer);
            
-           // Mobile and Desktop interaction
-           item.addEventListener('mouseenter', () => {
-               item.classList.add('active');
-           });
-           
-           item.addEventListener('mouseleave', () => {
-               item.classList.remove('active');
-           });
-           
            // Mobile toggle functionality
            item.addEventListener('click', (e) => {
                // Prevent immediate navigation if sublinks exist
