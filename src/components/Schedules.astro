@@ -68,6 +68,8 @@ const uniqueAllSessions = Array.from(
 );
 
 const sortedAllSessions = sortSessionsByTime(uniqueAllSessions);
+
+
 ---
 
 <div class="filter-container filter-alpha-animate">
@@ -320,7 +322,69 @@ const sortedAllSessions = sortSessionsByTime(uniqueAllSessions);
                                                     </div>
                                                 </div>
                                             </div>
-                                            {/* Rest of the session rendering remains the same as in the "All" section */}
+                                            {(session.speakers.length > 0 || session.content) && (
+                                                <div class="bottom">
+                                                    <div class="bottom-wrap">
+                                                        <div class="bottom-content">
+                                                            {session.content && (
+                                                                <div
+                                                                    class="card-row styled-content"
+                                                                    set:html={session.content}
+                                                                />
+                                                            )}
+                                                            {session.speakers.length > 0 && (
+                                                                <div class="card-row card-row-speakers">
+                                                                    {session.speakers.map(
+                                                                        (speaker: Speaker) => (
+                                                                            <div class="card-col">
+                                                                                <a class="single-speakers-card" href={`/speakers/${speaker.name.toLowerCase().replace(/\s+/g, "-")}/`}>
+                                                                                    <div class="card-row card-row-image">
+                                                                                        <div class="card-image">
+                                                                                            {speaker?.image &&
+                                                                                                images[
+                                                                                                    `/public/images/speakers/${speaker.image}`
+                                                                                                ] && (
+                                                                                                    <Picture
+                                                                                                        src={images[
+                                                                                                            `/public/images/speakers/${speaker.image}`
+                                                                                                        ]()}
+                                                                                                        formats={[
+                                                                                                            "webp",
+                                                                                                            "jpg",
+                                                                                                        ]}
+                                                                                                        alt={speaker.name}
+                                                                                                        class="overlay"
+                                                                                                        widths={[ 275,400,500,600, 750, 900 ]}
+                                                                                                        sizes="(max-width: 700px) 58vw, 450px"
+                                                                                                    />
+                                                                                                )}
+                                                                                        </div>
+                                                                                        <div class="card-tags group-tags">
+                                                                                            {speaker.tags.map(
+                                                                                                (tag) => (
+                                                                                                    <div class="single-tag">
+                                                                                                        <p>{tag}</p>
+                                                                                                    </div>
+                                                                                                ),
+                                                                                            )}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="card-row card-row-info">
+                                                                                        <h3 class="h5">
+                                                                                            {speaker.name}
+                                                                                        </h3>
+                                                                                        <p>{speaker.title}</p>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                        ),
+                                                                    )}
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </li>
                                     ))}
                                 </ul>
